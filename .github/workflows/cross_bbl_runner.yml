@@ -1,0 +1,30 @@
+name: Run Cross Barrel Pricing Script
+
+on:
+  schedule:
+    - cron: '30 2 * * 1-5'  # 06:30 Abu Dhabi time, Mon–Fri
+  workflow_dispatch:        # Allow manual trigger from GitHub
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pandas numpy requests beautifulsoup4 lxml xlsxwriter python-dateutil selenium
+
+    - name: Run pricing script
+      env:
+        EMAIL_PASSWORD: "plfrmqdnsvxfzgeo"  # <- your Gmail app password
+      run: |
+        python Cross_bbl_sheet_construction.py
