@@ -674,5 +674,3 @@ send_email_with_attachment(
     password=os.environ.get("EMAIL_PASSWORD")               # Pull password securely from environment variable
 )
 
-#password="pjyq ifge yxbb qquv"
-# use if the `EMAIL_PASSWORD` plug in doesnt work
