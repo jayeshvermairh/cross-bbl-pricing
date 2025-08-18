@@ -663,6 +663,10 @@ send_email_with_attachment(
     body="Hi Ola,\n\nPlease find attached the latest cross-barrel pricing sheet.",  # Plain-text body
     to_email=["Ola.Hansson@irh.ae"],                        # Primary recipient
     cc=["Lara.Peel@irh.ae", "aran.willetts@irh.ae", "vedant.bundellu@irh.ae"],# Optional CC list
+
+    #bcc=["hidden1@irh.ae", "hidden2@irh.ae"],  # Commented out for now (uncomment to add more people in the email)
+
+    # Change the sending email address to Vedant by the end of the week
     from_email="aran.willetts@gmail.com",                   # Sender address
     smtp_server="smtp.gmail.com",                           # Gmail SMTP
     smtp_port=465,                                          # SSL port for Gmail
@@ -670,5 +674,5 @@ send_email_with_attachment(
     password=os.environ.get("EMAIL_PASSWORD")               # Pull password securely from environment variable
 )
 
-#password="plfrmqdnsvxfzgeo" 
+#password="plfrmqdnsvxfzgeo"
 # use if the `EMAIL_PASSWORD` plug in doesnt work
