@@ -667,12 +667,12 @@ send_email_with_attachment(
     #bcc=["hidden1@irh.ae", "hidden2@irh.ae"],  # Commented out for now (uncomment to add more people in the email)
 
     # Change the sending email address to Vedant by the end of the week
-    from_email="aran.willetts@gmail.com",                   # Sender address
+    from_email="vedantxyz1@gmail.com",                   # Sender address
     smtp_server="smtp.gmail.com",                           # Gmail SMTP
     smtp_port=465,                                          # SSL port for Gmail
-    login="aran.willetts@gmail.com",                        # Same as sender
+    login="vedantxyz1@gmail.com",                        # Same as sender
     password=os.environ.get("EMAIL_PASSWORD")               # Pull password securely from environment variable
 )
 
-#password="plfrmqdnsvxfzgeo"
+#password="pjyq ifge yxbb qquv"
 # use if the `EMAIL_PASSWORD` plug in doesnt work
