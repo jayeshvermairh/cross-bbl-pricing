@@ -662,7 +662,7 @@ send_email_with_attachment(
     subject=f"Cross Barrel Pricing Sheet – {today_str}",    # Dynamic subject line with today's date
     body="Hi Ola,\n\nPlease find attached the latest cross-barrel pricing sheet.",  # Plain-text body
     to_email=["Ola.Hansson@irh.ae"],                        # Primary recipient
-    cc=["Lara.Peel@irh.ae", "aran.willetts@irh.ae", "vedant.bundellu@irh.ae"],# Optional CC list
+    cc=["energy@irh.ae", "vedant.bundellu@irh.ae"],# Optional CC list
 
     #bcc=["hidden1@irh.ae", "hidden2@irh.ae"],  # Commented out for now (uncomment to add more people in the email)
 
