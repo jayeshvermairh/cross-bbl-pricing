@@ -160,8 +160,13 @@ symbols_juv = parse_barchart_symbols("JUV")
 df_juv_raw = fetch_barchart_prices(symbols_juv)
 df_35_barge = clean_and_format_df(df_juv_raw, "3.5-Barges flat ($/kt)")
 
+## Add More fuel curves here if needed (180cst Sing is missing)
+#symbols_180sing = parse_barchart_symbols('insert ticker if available')
+#df_180_raw = fetch_barchart_prices(symbols_180sing)
+#df_180sing = clean_and_format_df(df_180_raw)
+
 ## List all your DataFrames
-dfs = [df_05, df_380, df_05_barge, df_35_barge]
+dfs = [df_05, df_380, df_05_barge, df_35_barge] # include 180 sing if available
 
 # Merge them one by one on 'month' and 'year'
 merged_df = dfs[0]
@@ -219,6 +224,8 @@ def clean_lf_format(df_raw, label):
 
 df_lsgo_flat = clean_lf_format(df_lf_raw, "LSGO flat ($/kt)")
 
+### ADD Sing Kero (aka Sing JET) if available down here - refer to format above (lines 164-167)
+
 # Adding these curves to main dataframe
 for df in [df_10ppm, df_lsgo_flat]:
     merged_df = pd.merge(merged_df, df, on=["month", "year"], how="left")
@@ -255,6 +262,8 @@ for df in [df_m92, df_ebob, df_rbob]:
 symbols_MOPJ = parse_barchart_symbols("JJA")
 df_MOPJ_raw = fetch_barchart_prices(symbols_MOPJ)
 df_MOPJ = clean_and_format_df(df_MOPJ_raw, "MOPJ flat ($/kt)")
+
+## Add European Naphtha (CIF NWE) here if needed
 
 merged_df = merged_df.merge(df_MOPJ, on=["month", "year"], how="left")
 
@@ -319,7 +328,7 @@ conversion_factors = {
     "0.5-Sing flat ($/kt)": 6.35,
     "LSGO flat ($/kt)": 7.45,
     "EBOB flat ($/kt)": 8.33,
-    "MOPJ flat ($/kt)": 8.9
+    "MOPJ flat ($/kt)": 8.9         # If we ever include Propane (or LPG), conversion factor is 12.4
 }
 
 # No conversion needed
@@ -483,11 +492,11 @@ master_df[cols_to_format_2dp] = master_df[cols_to_format_2dp].applymap(
 # Apply 4 decimal place rounding to RBOB-related columns
 master_df[rbob_cols_4dp] = master_df[rbob_cols_4dp].applymap(
     lambda x: round(x, 4) if pd.notnull(x) else x
-) 
+)
 
 ## ======================== Standardising Tenors - better readability for the sheet ========================
 
-# creating the tenor column - better readability
+# Creating the tenor column - better readability
 master_df["tenor"] = master_df.apply(
     lambda row: f"{row['month'][:3]}'{str(row['year'])[-2:]}", axis=1
 )
@@ -673,4 +682,3 @@ send_email_with_attachment(
     login="vedantxyz1@gmail.com",                        # Same as sender
     password=os.environ.get("EMAIL_PASSWORD")               # Pull password securely from environment variable
 )
-
