@@ -636,7 +636,8 @@ def send_email_with_attachment(
     password,          # Password or App password for SMTP auth
     cc=None,           # Optional list of CC recipients
     bcc=None,
-    use_starttls       # Optional list of BCC recipients
+    use_starttls=True,       # Optional list of BCC recipients
+    debug=False
 ):
     # Create base email object
     msg = EmailMessage()                                # Create a blank email
@@ -662,7 +663,14 @@ def send_email_with_attachment(
     all_recipients = to_email + (cc or []) + (bcc or [])  # Ensure all recipients get the message
 
     # Send the message via secure SMTP
-    with smtplib.SMTP_SSL(smtp_server, smtp_port) as smtp:  # Establish secure SMTP session
+    with smtplib.SMTP(smtp_server, smtp_port, timeout=60) as smtp:  # Establish secure SMTP session
+        if debug:
+            smtp.set_debuglevel(1)
+        smtp.ehlo()
+        if use_starttls:
+            smtp.starttls()                             # Upgrade to secure connection (TLS)
+            smtp.ehlo()  
+
         smtp.login(login, password)                         # Log in to SMTP server
         smtp.send_message(msg, to_addrs=all_recipients)     # Send the fully formed message
 
