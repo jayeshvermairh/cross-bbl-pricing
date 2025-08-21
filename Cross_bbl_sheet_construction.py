@@ -669,16 +669,17 @@ def send_email_with_attachment(
 send_email_with_attachment(
     filename=filename,                                      # Path to Excel file generated earlier
     subject=f"Cross Barrel Pricing Sheet – {today_str}",    # Dynamic subject line with today's date
-    body="Hi Ola,\n\nPlease find attached the latest cross-barrel pricing sheet.",  # Plain-text body
-    to_email=["Ola.Hansson@irh.ae"],                        # Primary recipient
-    cc=["energy@irh.ae", "vedant.bundellu@irh.ae", "Zinat.Juma@irh.ae"],    # Optional CC list
+    body="Hi Jayesh,\n\nPlease find attached the latest cross-barrel pricing sheet.",  # Plain-text body
+    to_email=["jayesh.verma@irh.ae"],                        # Primary recipient
+    #cc=["energy@irh.ae", "vedant.bundellu@irh.ae", "Zinat.Juma@irh.ae"],    # Optional CC list
 
     #bcc=["hidden1@irh.ae", "hidden2@irh.ae"],  # Commented out for now (uncomment to add more people in the email)
 
-    # Change the sending email address to Vedant by the end of the week
-    from_email="vedantxyz1@gmail.com",                   # Sender address
-    smtp_server="smtp.gmail.com",                           # Gmail SMTP
-    smtp_port=465,                                          # SSL port for Gmail
-    login="vedantxyz1@gmail.com",                        # Same as sender
-    password=os.environ.get("EMAIL_PASSWORD")               # Pull password securely from environment variable
+    # Change the sending email address to IRH Domain by the end of the week
+    from_email="alert@irh.ae",                   # Sender address
+    smtp_server="smtp.office365.com",                           # Gmail SMTP
+    smtp_port=587,                                          # SSL port for Gmail
+    login="alert@irh.ae",                        # Same as sender
+    password=os.environ.get("EMAIL_PASSWORD"),              # Pull password securely from environment variable
+    use_starttls=True
 )
