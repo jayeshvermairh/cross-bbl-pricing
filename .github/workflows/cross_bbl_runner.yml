@@ -3,7 +3,6 @@ name: Run Cross Barrel Pricing Script
 on:
   schedule:
     #- cron: '30 2 * * 1-5'  # 06:30 Abu Dhabi time, Mon–Fri
-    # - cron: '40 9 * * 1-5'  #13:30 Abu dhabi Time (for testing)
   workflow_dispatch:        # Allow manual trigger from GitHub
 
 jobs:
