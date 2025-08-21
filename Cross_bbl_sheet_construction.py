@@ -677,10 +677,10 @@ def send_email_with_attachment(
 # Email delivery configuration — ready to call at the end of your script
 send_email_with_attachment(
     filename=filename,                                      # Path to Excel file generated earlier
-    subject=f"Cross Barrel Pricing Sheet – {today_str}",    # Dynamic subject line with today's date
+    subject=f"Testing Cross Barrel Pricing Sheet – {today_str}",    # Dynamic subject line with today's date
     body="Hi Jayesh,\n\nPlease find attached the latest cross-barrel pricing sheet.",  # Plain-text body
     to_email=["jayesh.verma@irh.ae"],                        # Primary recipient
-    #cc=["energy@irh.ae", "vedant.bundellu@irh.ae", "Zinat.Juma@irh.ae"],    # Optional CC list
+    cc=["Mohammad.Sheik@irh.ae", "Praveen.Yadav@irh.ae"],    # Optional CC list
 
     #bcc=["hidden1@irh.ae", "hidden2@irh.ae"],  # Commented out for now (uncomment to add more people in the email)
 
