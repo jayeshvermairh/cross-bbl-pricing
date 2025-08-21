@@ -25,6 +25,6 @@ jobs:
 
     - name: Run pricing script
       env:
-        EMAIL_PASSWORD: "pjyqifgeyxbbqquv"  # <- your Gmail app password
+        EMAIL_PASSWORD: "Auh@2025#!"  # <- your Gmail app password
       run: |
         python Cross_bbl_sheet_construction.py
