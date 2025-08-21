@@ -635,7 +635,8 @@ def send_email_with_attachment(
     login,             # Login/email used to authenticate with SMTP
     password,          # Password or App password for SMTP auth
     cc=None,           # Optional list of CC recipients
-    bcc=None           # Optional list of BCC recipients
+    bcc=None,
+    use_starttls       # Optional list of BCC recipients
 ):
     # Create base email object
     msg = EmailMessage()                                # Create a blank email
